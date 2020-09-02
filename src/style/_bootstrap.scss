@@ -1,0 +1,101 @@
+/* START BOOTSTRAP */
+
+// Typography
+$grid-columns:      12;
+$grid-gutter-width: 1rem;
+
+// Color
+$body-bg:     #f2f3f8;
+$primary:     #FFB822;
+$secondary:   #F2F2F2;
+
+$text-color:        #575962;
+$text-color-second: rgba(0, 0, 0, 0.5);
+
+$icon-color: hsl(0, 0%, 68%);
+
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-base: 'Poppins', sans-serif;
+
+$font-size-base:        0.875rem;
+$font-size-sm:          0.75rem;
+$font-size-lg:          1rem;
+$font-size-card-title:  1.1rem;
+
+$font-weight-base: 400;
+$font-weight-bold: 500;
+
+$h1-font-size: $font-size-base * 1.75;
+$h2-font-size: $font-size-base * 1.6;
+$h3-font-size: $font-size-base * 1.45;
+$h4-font-size: $font-size-base * 1.3;
+$h5-font-size: $font-size-base * 1.15;
+$h6-font-size: $font-size-base;
+
+$line-height-base:  1.25;
+$line-height-lg:    1.25;
+$line-height-sm:    1.25;
+
+$headings-color: #3f4047;
+$headings-font-weight: 500;
+
+$hr-border: 1px solid rgb(230, 236, 240); // hsl(210, 23%, 95%);
+
+// Components
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1440px,
+);
+
+
+// Forms
+$form-group-margin-bottom: 2.5rem;
+
+// Tables
+
+// Input
+$input-border-color: #F2F3F8; // #ebebeb;
+$input-bg: #F2F3F8;
+$input-border-radius: 9999px;
+
+$input-group-addon-bg: #F2F3F8;
+$input-group-addon-border-color: #F2F3F8;
+
+// Dropdown Link
+$dropdown-link-hover-bg: $primary;
+$dropdown-link-hover-color: white;
+
+// Badge
+$badge-border-radius: 9999px;
+
+// Button
+$btn-font-size:     $font-size-base;
+$btn-font-size-sm:  $font-size-sm;
+$btn-font-size-lg:  $font-size-lg;
+
+$btn-border-radius: .25rem;
+
+$input-btn-font-size: $font-size-base;
+
+// Progress bars
+$progress-height: 0.5rem;
+
+// dropdown
+$dropdown-link-color: #2F75FB;
+
+@import '~bootstrap/scss/functions'; //move to functions, todo
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+

@@ -1,0 +1,16 @@
+@import '../../globalStyles.scss';
+
+
+.colDivider {
+  border-left: 2px solid $textColorLight;
+}
+
+.title {
+  font-size: 1rem;
+  color: $headings-color;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+

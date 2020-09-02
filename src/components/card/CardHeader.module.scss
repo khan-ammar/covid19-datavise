@@ -1,0 +1,7 @@
+@import '../../globalStyles.scss';
+
+.root {
+  background-color: $textColorDark;
+  padding: $unit-sm;
+  border-bottom: 1px solid $card-border-color;
+}

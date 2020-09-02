@@ -1,0 +1,50 @@
+@import '../../globalStyles.scss';
+
+
+.colDivider {
+  border-left: 2px solid $textColorLight;
+}
+
+.title {
+  font-size: 1rem;
+  color: $headings-color;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.root {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.lastUpdated {
+  font-size: 0.75rem;
+  font-weight: normal;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.scaleButton {
+  color: white;
+  background-color: $textColorLight !important;
+  border-radius: 0rem;
+  font-weight: bold;
+
+  &:hover,&:focus {
+    box-shadow: none !important;
+    background-color: $textColorLight !important;
+  }
+
+  &:hover:active {
+    background-color: $textColorLight !important;
+  } 
+}
+
+.tooltip {
+  color: $textColorLight !important;
+  background-color: white !important;
+}

@@ -1,0 +1,11 @@
+@import '../../globalStyles.scss';
+
+.root {
+  border-left: 2px solid $textColorDark;
+  height: 40px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  margin-left: $unit-md;
+  margin-right: $unit-sm;
+  width: 2px;
+}

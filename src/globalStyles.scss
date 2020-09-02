@@ -1,0 +1,54 @@
+@import '@covid19_datavise/style/index.scss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+$max-card-width: 1500px;
+$card-height-large: 1000px;
+
+$casesColor: #ffdd89;
+$casesColorMin: rgba(#ffdd89, 0.5); 
+$casesColorMax: #f9ab00; 
+
+$deathsColor: #ff9989;
+$deathsColorMin: rgba(#ff9989, 0.5); 
+$deathsColorMax: #f92200; 
+
+$recoveredColor: #9ad8ee;
+$recoveredColorMin: rgba(#9ad8ee, 0.5);
+$recoveredColorMax: #24a7d5;
+
+$textColorLight: #bab7d1;
+$textColorDark: #120631;
+
+$hoverColor: rgba(#bab7d1, 0.5);
+$hoverTextColor: #120631;
+
+$backgroundColorLight: rgba(#bab7d1, 0.5);
+$backgroundColorDark: #120631; 
+$backgroundColor: $backgroundColorDark;
+
+
+* {
+  font-family: $font-family-base;
+}
+
+.App {
+  width: $max-card-width;
+  margin: 0 auto;
+}
+
+:export {
+  casesColorMin: $casesColorMin;
+  casesColorMax: $casesColorMax;
+  deathsColorMin: $deathsColorMin;
+  deathsColorMax: $deathsColorMax;
+  recoveredColorMin: $recoveredColorMin;
+  recoveredColorMax: $recoveredColorMax;
+  backgroundColor: $backgroundColor;
+  textColorLight: $textColorLight;
+  textColorDark: $textColorDark;
+  hoverColor: $hoverColor;
+  hoverTextColor: $hoverTextColor;
+  backgroundColorDark: $backgroundColorDark;
+  backgroundColorLight: $backgroundColorLight;
+  cardWidth: $max-card-width;
+}

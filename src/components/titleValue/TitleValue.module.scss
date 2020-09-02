@@ -1,0 +1,63 @@
+@import '../../globalStyles.scss';
+
+
+.root {
+  position: relative;
+  //border-radius: 10px;
+  //margin-bottom: 3rem;
+}
+
+.deaths {
+  background-color: $backgroundColorLight; //$deathsColorMin;
+}
+
+.cases {
+  background-color: $backgroundColorLight; //$casesColorMin;
+}
+
+.recovered {
+  background-color: $backgroundColorLight; //$recoveredColorMin;
+}
+
+.title {
+  font-size: 2rem;
+  color: $textColorDark;
+  font-weight: 600;
+  margin-bottom: $unit-xxs;
+}
+
+.subTitle {
+  font-size: 1.25rem;
+  color: $textColorDark;
+  margin-top: $unit-xxs;
+  margin-bottom: $unit-xxs;
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: $unit-xxs;
+}
+
+.casesNew {
+  color: $casesColorMax;
+  font-weight: bold;
+}
+
+.deathsNew {
+  color: $deathsColorMax;
+  font-weight: bold;
+  
+}
+
+.recoveredNew {
+  color: $recoveredColorMax;
+  font-weight: bold;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+
+

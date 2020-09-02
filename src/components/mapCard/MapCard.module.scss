@@ -1,0 +1,15 @@
+@import '../../globalStyles.scss';
+
+.container {
+  display: flex;
+  width: $max-card-width;
+  align-items: center;
+}
+
+.map {
+  height: 500px;
+}
+
+.barchart {
+  height: 400px;
+}

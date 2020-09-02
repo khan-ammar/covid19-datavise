@@ -1,0 +1,14 @@
+@import '../../globalStyles.scss';
+
+.root {
+  padding: $unit-md;
+  border-bottom: 1px solid #E9EAEA;
+  background-color: white;
+  margin-bottom: $unit-md;
+  flex-grow: 1;
+}
+
+.sizeLarge {
+  //padding: $unit-lg;
+  height: $card-height-large;
+}

@@ -1,0 +1,19 @@
+@import '../../globalStyles.scss';
+
+.root {
+  width: $max-card-width;
+  max-width: $max-card-width;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.colDivider {
+  border-left: 2px solid $textColorLight;
+}
+
+.colCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

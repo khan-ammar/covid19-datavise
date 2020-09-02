@@ -1,0 +1,21 @@
+//@import '@electrifai/style';
+
+.root {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  //padding: $unit-xxs 0;
+}
+
+.name {
+  margin-left: 0.5rem;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.selected {
+  color: #64B5F6;
+}

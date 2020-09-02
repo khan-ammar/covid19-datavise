@@ -1,0 +1,12 @@
+@import '../../globalStyles.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  max-width: $max-card-width;
+}
+
+.fullHeight {
+  height: 100%;
+  flex-grow: 1;
+}

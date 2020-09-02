@@ -1,0 +1,66 @@
+@import '../../globalStyles.scss';
+
+.root {
+  width: $max-card-width;
+  max-width: $max-card-width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryButton {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  border-radius: 0rem;
+  height: 35px;
+  padding: 0;
+  margin: 0;
+  transition: none;
+  min-width: 130px;
+  font-weight: 500;
+  border: 1px solid white;
+  background-color: rgba($textColorDark, 0.5);
+  
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:hover:active {
+    background-color: $textColorLight !important;
+  } 
+}
+
+.allButton {
+  &:hover,&:focus,
+  &-selected {
+    text-decoration: none;
+    background-color: #a5d296;
+  }
+}
+
+.casesButton {
+  &:hover,&:focus,
+  &-selected {
+    text-decoration: none;
+    background-color: $casesColorMax;
+  }
+}
+
+.deathsButton {
+  &:hover,&:focus,
+  &-selected {
+    text-decoration: none;
+    background-color: $deathsColorMax;
+  }
+}
+
+.recoveredButton {
+  &:hover,&:focus,
+  &-selected {
+    text-decoration: none;
+    background-color: $recoveredColorMax;
+  }
+}
