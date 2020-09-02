@@ -33,25 +33,22 @@ const countryUrl = 'https://api.covid19api.com/total/dayone/country/';
 
 export default function CountryComparison(props: Props) {
   const { data, dataset } = props;
-  const [country, setCountry] = useState('China');
+  const [country1, setCountry1] = useState('China');
   const [country2, setCountry2] = useState('United States of America');
   const classes = useStyles();
-  const [countryData, setCountryData] = useState();
+  const [country1Data, setCountry1Data] = useState();
   const [country2Data, setCountry2Data] = useState();
 
-  console.log('comparison ', dataset)
-
   useEffect(() => {
-    console.log('country hai bhai ', country)
-    if (country !== '') {
+    if (country1 !== '') {
       const fetchOptions = {
-        url: countryUrl + country,
+        url: countryUrl + country1,
         method: 'GET',
       };
       const fetchData = async () => {
 
         const response = await axios(fetchOptions,);
-        setCountryData(response.data);
+        setCountry1Data(response.data);
       }
 
       fetchData();
@@ -59,7 +56,7 @@ export default function CountryComparison(props: Props) {
     }
 
 
-  }, [country]);
+  }, [country1]);
 
   useEffect(() => {
     if (country2 !== '') {
@@ -83,13 +80,11 @@ export default function CountryComparison(props: Props) {
 
 
 
-  function onChangeCountry(val) {
-    console.log("Selected", val)
-    !!val ? setCountry(val.Country) : setCountry('');
+  function onChangeCountry1(val) {
+    !!val ? setCountry1(val.Country) : setCountry1('');
   }
 
   function onChangeCountry2(val) {
-    console.log("Selected", val)
     !!val ? setCountry2(val.Country) : setCountry2('');
   }
 
@@ -104,14 +99,14 @@ export default function CountryComparison(props: Props) {
           <Col>
             <div className={styles.colCentered} >
               <Autocomplete
-                id="country-select-demo1"
+                id="country-select-1"
                 style={{ width: 300 }}
                 /*classes={{
                   option: classes.option,
                 }}*/
                 options={dataset.Countries}
                 onChange={(event, newValue) => {
-                  onChangeCountry(newValue);
+                  onChangeCountry1(newValue);
                 }}
 
                 autoHighlight
@@ -144,7 +139,7 @@ export default function CountryComparison(props: Props) {
             <div className={styles.colCentered}>
               <Autocomplete
 
-                id="country-select-demo2"
+                id="country-select-2"
                 style={{ width: 300 }}
                 options={dataset.Countries}
                 onChange={(event, newValue) => {
@@ -165,7 +160,7 @@ export default function CountryComparison(props: Props) {
                     variant="outlined"
                     inputProps={{
                       ...params.inputProps,
-                      autoComplete: 'new-password', // disable autocomplete and autofill
+                      autoComplete: '', // disable autocomplete and autofill
                     }}
                   />
                 )}
@@ -175,32 +170,21 @@ export default function CountryComparison(props: Props) {
 
             </div>
           </Col>
-
-
-
-
-
-
-
         </Row>
 
         <Row>
           <Col>
-            <PieChart data={dataset.Countries.find((item) => item.Country === country)} isDonut={false} />
+            <PieChart data={dataset.Countries.find((item) => item.Country === country1)} isDonut={false} />
           </Col>
           <Col className={styles.colDivider}>
             <PieChart data={dataset.Countries.find((item) => item.Country === country2)} isDonut={false} />
-
-
           </Col>
-
-
-
         </Row>
+
         <Row>
           <Col>
-            {!!country && !!countryData && (
-              <LineChart country={country} data={countryData} />
+            {!!country1 && !!country1Data && (
+              <LineChart country={country1} data={country1Data} />
 
             )}
           </Col>
@@ -211,9 +195,8 @@ export default function CountryComparison(props: Props) {
             )}
           </Col>
         </Row>
-      </CardBody>
 
+      </CardBody>
     </Card>
   );
-
 };

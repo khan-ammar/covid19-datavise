@@ -30,11 +30,8 @@ const mapByTypes = [
 
 
 export default function CategoryButtons(props: Props) {
-
   const { category, onSelect, allButton } = props;
   const categories = allButton ? mapByTypes : mapByTypes.filter(item => item.value !== 'all');
-
-  console.log("category buttons is ", category)
 
   return (
     <div className={styles.root}>
@@ -43,13 +40,8 @@ export default function CategoryButtons(props: Props) {
           <Button key={type.value} size="md" className={cn(styles.categoryButton, styles[type.value + 'Button'], category === type.value ? styles[type.value + 'Button-selected'] : '')} onClick={() => onSelect(type.value)}>{type.label}</Button>
         ))
       }
-
     </div>
-
-
-
   );
-
 }
 
 CategoryButtons.defaultProps = {

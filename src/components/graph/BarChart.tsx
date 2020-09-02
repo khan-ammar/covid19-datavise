@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import Highcharts from 'highcharts/highstock';
+import Highcharts, { find } from 'highcharts/highstock';
 import sortBy from 'lodash/sortBy';
 import maxBy from 'lodash/maxBy';
 import HighchartsReact from 'highcharts-react-official';
@@ -42,6 +42,21 @@ type Props = {
     : normalizeData;
 }*/
 
+const MapBy = [
+  {
+    key: 'cases',
+    value: 'TotalConfirmed',
+  },
+  {
+    key: 'deaths',
+    value: 'TotalDeaths',
+  },
+  {
+    key: 'recovered',
+    value: 'TotalRecovered',
+  },
+];
+
 export default function BarChart(props: Props) {
   const {
     title,
@@ -63,6 +78,7 @@ export default function BarChart(props: Props) {
     width,
   } = props;
 
+  const mapByValue = (MapBy.find((item) => item.key === mapBy) || { value: 'TotalCases' }).value;
 
   function handleSelectByClick(event) {
     if (!enableSelection || !onSelectedPoints || xAxisTitle === undefined) {
@@ -79,15 +95,14 @@ export default function BarChart(props: Props) {
 
   const normalizedData = data;//normalizeData(data, sort);
 
-
   const options = {
     series: [{
       color: styles.[`${mapBy.toLowerCase()}ColorMax`],
       name: xAxisTitle,
-      data: data.Countries.sort((a, b) => (a.TotalDeaths < b.TotalDeaths) ? 1 : -1)./*filter((it) => (it.TotalDeaths > 5000)).*/map((row, index) => ({
+      data: data.Countries.sort((a, b) => (a[mapByValue] < b[mapByValue]) ? 1 : -1)./*filter((it) => (it.TotalDeaths > 5000)).*/map((row, index) => ({
         name: row.Country,
-        y: mapBy === 'cases' ? row.TotalConfirmed : (mapBy === 'deaths') ? row.TotalDeaths : row.TotalRecovered,
-      })),//{ name: row.Country, y: row.TotalDeaths })),
+        y: row[mapByValue],
+      })),
     }],
     plotOptions: {
       series: {
@@ -128,7 +143,6 @@ export default function BarChart(props: Props) {
     },
     tooltip: {
       formatter(): number {
-        console.log('tooltip is ', this);
         return tooltipFormatter
           ? tooltipFormatter(this)
           : (`${this.key} : ${this.y}`);
@@ -197,8 +211,6 @@ export default function BarChart(props: Props) {
       },
     }
   };
-
-  console.log(options.series);
 
   return (
     <HighchartsReact

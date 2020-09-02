@@ -28,9 +28,7 @@ export default function MapCard(props) {
   const [selected, setSelected] = useState([]);
 
   function onSelect(event) {
-    const nana = event.name;
-    console.log('selected so far ', event, selected)
-    setSelected(selected.concat(nana));
+    setSelected(selected.concat(event.name));
   }
 
   function onUnSelect(event) {

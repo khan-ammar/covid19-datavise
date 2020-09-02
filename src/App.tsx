@@ -43,24 +43,10 @@ function App() {
         return mapBy === 'cases' ? item.TotalConfirmed : (mapBy === 'deaths') ? item.TotalDeaths : item.TotalRecovered;
       }));
 
-      console.log(maxVal);
-
-
-
       setMaxValue(maxVal);
     }
 
   }, [data, mapBy]);
-
-  /*var maxVal = 0;
-  if (!!data) {
-    maxVal = Math.max.apply(Math, data.Countries.map((item) => { return item.TotalConfirmed; }));
-    console.log(maxVal);
-
-  }*/
-
-
-  //console.log('Max val is ', Math.max.apply(Math, data?.Countries.map((item) => { return item.TotalDeaths; })));
 
   function onSetMapBy(val) {
     console.log('app mein .. ', val, maxValue);
@@ -68,18 +54,11 @@ function App() {
     setMapBy(val);
   }
 
-
-
   return (
     <div className="App">
       {!!data && (
         <GlobalSummary data={data.Global} lastUpdated={data.Countries[0].Date} />
       )}
-
-      <br />
-
-
-
 
       {!!data && (
         <MapCard data={data} max={maxValue} mapBy={mapBy} onMapBy={onSetMapBy} />
@@ -89,23 +68,9 @@ function App() {
         <Summary data={data.Global} dataset={data} />
       )}*/}
 
-      <br />
-
-
       {!!data && (
         <CountryComparison data={data.Global} dataset={data} />
       )}
-
-
-
-
-
-
-
-
-
-
-
     </div>
   );
 }
