@@ -36,6 +36,13 @@ $backgroundColor: $backgroundColorDark;
   margin: 0 auto;
 }
 
+.Loading {
+  min-height: $card-height-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 :export {
   casesColorMin: $casesColorMin;
   casesColorMax: $casesColorMax;

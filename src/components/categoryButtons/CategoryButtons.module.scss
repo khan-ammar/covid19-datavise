@@ -21,8 +21,8 @@
   transition: none;
   min-width: 130px;
   font-weight: 500;
-  border: 1px solid white;
-  background-color: rgba($textColorDark, 0.5);
+  border: 1px solid rgba($textColorDark, 0.5); //white;
+  background-color: white;//rgba($textColorDark, 0.5);
   
   &:focus {
     box-shadow: none !important;
@@ -42,25 +42,34 @@
 }
 
 .casesButton {
+  color: $casesColorMax;
+
   &:hover,&:focus,
   &-selected {
     text-decoration: none;
     background-color: $casesColorMax;
+    color: white;
   }
 }
 
 .deathsButton {
+  color: $deathsColorMax;
+
   &:hover,&:focus,
   &-selected {
     text-decoration: none;
     background-color: $deathsColorMax;
+    color: white;
   }
 }
 
 .recoveredButton {
+  color: $recoveredColorMax;
+
   &:hover,&:focus,
   &-selected {
     text-decoration: none;
     background-color: $recoveredColorMax;
+    color: white;
   }
 }

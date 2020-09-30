@@ -9,6 +9,8 @@ import axios from 'axios';
 import LineChart from '../graph/LineChart';
 import PieChart from '../graph/PieChart';
 import styles from './CountryComparison.module';
+import DotLoader from "react-spinners/DotLoader";
+import { css } from "@emotion/core";
 
 type Props = {
   data: Object[],
@@ -28,16 +30,23 @@ const useStyles = makeStyles({
   }
 });
 
+const override = css`
+  margin: 0 auto;
+  display: block;
+`;
+
 const countryUrl = 'https://api.covid19api.com/total/dayone/country/';
 
 
 export default function CountryComparison(props: Props) {
   const { data, dataset } = props;
-  const [country1, setCountry1] = useState('China');
+  const [country1, setCountry1] = useState('India');
   const [country2, setCountry2] = useState('United States of America');
   const classes = useStyles();
   const [country1Data, setCountry1Data] = useState();
   const [country2Data, setCountry2Data] = useState();
+  const [loading1, setLoading1] = useState(true);
+  const [loading2, setLoading2] = useState(true);
 
   useEffect(() => {
     if (country1 !== '') {
@@ -49,12 +58,10 @@ export default function CountryComparison(props: Props) {
 
         const response = await axios(fetchOptions,);
         setCountry1Data(response.data);
+        setLoading1(false);
       }
-
       fetchData();
-
     }
-
 
   }, [country1]);
 
@@ -69,23 +76,29 @@ export default function CountryComparison(props: Props) {
         const response = await axios(fetchOptions,);
 
         setCountry2Data(response.data);
+        setLoading2(false);
       }
-
       fetchData2();
-
     }
-
 
   }, [country2]);
 
 
 
   function onChangeCountry1(val) {
-    !!val ? setCountry1(val.Country) : setCountry1('');
+    if (!!val) {
+      setCountry1(val.Country);
+    }
   }
 
   function onChangeCountry2(val) {
-    !!val ? setCountry2(val.Country) : setCountry2('');
+    if (!!val) {
+      setCountry2(val.Country);
+    }
+  }
+
+  function getCountry(countries, country) {
+    return countries.find((item) => item.Country === country);
   }
 
   return (
@@ -108,6 +121,8 @@ export default function CountryComparison(props: Props) {
                 onChange={(event, newValue) => {
                   onChangeCountry1(newValue);
                 }}
+                value={getCountry(dataset.Countries, country1)}
+
 
                 autoHighlight
                 getOptionLabel={(option) => option.Country}
@@ -138,13 +153,13 @@ export default function CountryComparison(props: Props) {
           <Col>
             <div className={styles.colCentered}>
               <Autocomplete
-
                 id="country-select-2"
                 style={{ width: 300 }}
                 options={dataset.Countries}
                 onChange={(event, newValue) => {
                   onChangeCountry2(newValue);
                 }}
+                value={getCountry(dataset.Countries, country2)}
 
                 autoHighlight
                 getOptionLabel={(option) => option.Country}
@@ -172,24 +187,48 @@ export default function CountryComparison(props: Props) {
           </Col>
         </Row>
 
+        {(
+          <div >
+            <DotLoader
+              css={override}
+              size={100}
+              color={styles.backgroundColorLight}
+              loading={loading1 || loading2}
+            />
+          </div>
+
+        )}
+
+
         <Row>
           <Col>
-            <PieChart data={dataset.Countries.find((item) => item.Country === country1)} isDonut={false} />
+            {!loading1 && !!country1 && !!country1Data && (
+              <PieChart
+                data={getCountry(dataset.Countries, country1)}
+                isDonut={true}
+                title={getCountry(dataset.Countries, country1)['CountryCode']} />
+            )}
           </Col>
+
           <Col className={styles.colDivider}>
-            <PieChart data={dataset.Countries.find((item) => item.Country === country2)} isDonut={false} />
+            {!loading2 && !!country2 && !!country2Data && (
+              <PieChart
+                data={getCountry(dataset.Countries, country2)}
+                isDonut={true}
+                title={getCountry(dataset.Countries, country2)['CountryCode']} />
+            )}
           </Col>
         </Row>
 
         <Row>
           <Col>
-            {!!country1 && !!country1Data && (
+            {!loading1 && !!country1 && !!country1Data && (
               <LineChart country={country1} data={country1Data} />
 
             )}
           </Col>
           <Col className={styles.colDivider}>
-            {!!country2 && !!country2Data && (
+            {!loading2 && !!country2 && !!country2Data && (
               <LineChart country={country2} data={country2Data} />
 
             )}

@@ -55,8 +55,11 @@ export default function PieChart(props: Props) {
       },*/
     }],
     title: {
-      text: '',// data ? data.Country : '',
-      //y: 200,
+
+      text: isDonut ? title : '',
+      verticalAlign: 'middle',
+      y: 0,
+      floating: true,
     },
     chart: {
       style,

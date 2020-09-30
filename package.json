@@ -23,6 +23,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-selectable-fast": "^3.4.0",
+    "react-spinners": "^0.9.0",
     "reactstrap": "^8.5.1"
   },
   "scripts": {

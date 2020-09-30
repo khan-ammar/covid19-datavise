@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-//import logo from './logo.svg';
 import './globalStyles.scss';
-
 import axios from 'axios';
-import Summary from './components/summary/Summary';
 import MapCard from './components/mapCard/MapCard';
 import GlobalSummary from './components/globalSummary/GlobalSummary';
 import CountryComparison from './components/countryComparison/CountryComparison';
+import { css } from "@emotion/core";
+import GridLoader from "react-spinners/GridLoader";
+
+// Can be a string as well. Need to ensure each key-value pair ends with ;
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
 
 const fetchOptions = {
   url: 'https://api.covid19api.com/summary',
@@ -22,16 +27,17 @@ function App() {
   const [data, setData] = useState();
   const [mapBy, setMapBy] = useState('cases');
   const [maxValue, setMaxValue] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios(fetchOptions,);
         setData(response.data);
+        setLoading(false);
       } catch (e) {
         console.log(`axios request failed: ${e}`);
       }
-
     }
 
     fetchData();
@@ -44,32 +50,37 @@ function App() {
       }));
 
       setMaxValue(maxVal);
+      setLoading(false);
     }
 
   }, [data, mapBy]);
 
   function onSetMapBy(val) {
-    console.log('app mein .. ', val, maxValue);
-
     setMapBy(val);
+    setLoading(true);
   }
 
   return (
     <div className="App">
-      {!!data && (
-        <GlobalSummary data={data.Global} lastUpdated={data.Countries[0].Date} />
+      {!!loading && (
+        <div className="Loading">
+          <GridLoader
+            css={override}
+            size={15}
+            color={"#123abc"}
+            loading={loading}
+          />
+        </div>
       )}
 
-      {!!data && (
-        <MapCard data={data} max={maxValue} mapBy={mapBy} onMapBy={onSetMapBy} />
-      )}
+      {!!data && !loading && (
+        <>
+          <GlobalSummary data={data.Global} lastUpdated={data.Countries[0].Date} />
 
-      {/*{!!data && (
-        <Summary data={data.Global} dataset={data} />
-      )}*/}
+          <CountryComparison data={data.Global} dataset={data} />
 
-      {!!data && (
-        <CountryComparison data={data.Global} dataset={data} />
+          <MapCard data={data} max={maxValue} mapBy={mapBy} onMapBy={onSetMapBy} />
+        </>
       )}
     </div>
   );
